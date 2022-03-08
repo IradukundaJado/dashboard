@@ -42,7 +42,7 @@ public class Student {
 
     //relationship
     @OneToMany(mappedBy = "student")
-    private Set<StudentCourse> studentCourses= new HashSet<>();
+    private Set<StudentCourse> studentCourses;
 
     public int getId() {
         return id;

@@ -108,26 +108,34 @@
     <div class="alert alert-info" role="alert">
       <center>Assigning Courses to Student section</center>
       </div>
-      <form th:action="@{/create-student-course}" th:object="${student}" method="post">
-        <input type="hidden" th:field="*{id}">
-        <input type="hidden" th:field="*{firstName}">
-        <input type="hidden" th:field="*{lastName}">
-        <input type="hidden" th:field="*{gender}">
-        <input type="hidden" th:field="*{picture}">
-        <input type="hidden" th:field="*{address}">
-        <input type="hidden" th:field="*{createdAt}">
-   <!-- <div>-->
-      <span th:each="course: ${courses}"> 
-      <center>
-        <input type="checkbox" th:field="*{studentCourses}" th:value="${course.id}">
-        <label th:text="${course.courseName}"></label><br/>
-        </center>
-        </span>
-    <!--</div>-->
-    <div class="col-md-12">
-      <button type="submit" class="btn btn-primary btn btn-block">Assign</button>
-      </div>
-      </form>
+          <form th:action="@{/create-student-course}" th:object="${student}" method="post">
+              <input type="hidden" th:field="*{id}">
+              <input type="hidden" th:field="*{firstName}">
+              <input type="hidden" th:field="*{lastName}">
+              <input type="hidden" th:field="*{gender}">
+              <input type="hidden" th:field="*{picture}">
+              <input type="hidden" th:field="*{address}">
+              <input type="hidden" th:field="*{createdAt}">
+              <!-- <div>-->
+              <!--<span th:each="course: ${courses}">
+              <center>
+                <input type="checkbox" th:field="*{studentCourses}" th:value="${course.id}">
+                <label th:text="${course.courseName}"></label><br/>
+                </center>
+                </span>-->
+
+              <!--i guess this might work, i saw an issue on how the binding was implemented
+               ntago nayirunninz on my end, test this if it doesnt work uzekumbwira-->
+              <input type="checkbox" name="studentCourses"
+                     th:each="course : ${courses}"
+                     th:text="${course.courseName}"
+                     th:value="${course.id}"
+                     th:field="*{studentCourses}"/>
+              <!--</div>-->
+              <div class="col-md-12">
+                  <button type="submit" class="btn btn-primary btn btn-block">Assign</button>
+              </div>
+          </form>
   </div>
 
       </main>
